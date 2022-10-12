@@ -8,16 +8,23 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"org.zerock.spring1.service","org.zerock.spring1.dao"})
+//스프링 컨테이너
+@ComponentScan(basePackages = {"org.zerock.spring1.service"})
+//@Component, @Service, @Repository, @Controller, @Configuration 중 1개라도 등록된 클래스를 찾으면, Context에 bean으로 등록
 @MapperScan( basePackages = {"org.zerock.spring1.mapper"})
+@EnableAspectJAutoProxy
+
 //@ComponentScan = 패키지 이름
 public class RootConfig {
 
     @Bean
+    //외부 라이브러리와 같은 것들을 Bean으로 만들 때 사용
+    //메소드 이름으로 빈 이름이 결정된다
     public HikariConfig hikariConfig(){
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("org.mariadb.jdbc.Driver");

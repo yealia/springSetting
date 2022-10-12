@@ -9,9 +9,18 @@
     </Appenders>
 
     <loggers>
-        <root level="debug" additivity="true">
+        <root level="info" additivity="true">
             <AppenderRef ref="console"/>
         </root>
+
+        <logger level="info" name="org.springframework" additivity="false">
+            <AppenderRef ref="console"/>
+        </logger>
+<!--        web은 좀 더 자세한 디버그를 보고 싶을 때 -->
+        <logger level="debug" name="org.springframework" additivity="false">
+            <AppenderRef ref="console"/>
+        <AppenderRef ref="console"/>
+    </logger>
     </loggers>
 
 </configuration>
